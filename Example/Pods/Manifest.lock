@@ -1,0 +1,16 @@
+PODS:
+  - WNetwork (0.1.0)
+
+DEPENDENCIES:
+  - WNetwork (from `../`)
+
+EXTERNAL SOURCES:
+  WNetwork:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  WNetwork: cccea1fd09c3fd6ac27229fb9a6daab2927196b2
+
+PODFILE CHECKSUM: a885b784be80def28077ea159c0bced5cc2d6b5e
+
+COCOAPODS: 1.5.0
