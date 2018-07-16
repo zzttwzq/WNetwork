@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C8E38B820FCF880000BA30A /* WNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C8E38B620FCF880000BA30A /* WNetwork.h */; };
+		1C8E38B920FCF880000BA30A /* WNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C8E38B620FCF880000BA30A /* WNetwork.h */; };
+		1C8E38BA20FCF880000BA30A /* WNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E38B720FCF880000BA30A /* WNetwork.m */; };
+		1C8E38BB20FCF880000BA30A /* WNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E38B720FCF880000BA30A /* WNetwork.m */; };
+		1C8E38BE20FCF898000BA30A /* WJosnTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C8E38BC20FCF898000BA30A /* WJosnTool.h */; };
+		1C8E38BF20FCF898000BA30A /* WJosnTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C8E38BC20FCF898000BA30A /* WJosnTool.h */; };
+		1C8E38C020FCF898000BA30A /* WJosnTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E38BD20FCF898000BA30A /* WJosnTool.m */; };
+		1C8E38C120FCF898000BA30A /* WJosnTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E38BD20FCF898000BA30A /* WJosnTool.m */; };
 		35BB3C127DFEA561F17CB294DE6C915B /* Pods-WNetwork_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 43BE60CEB34272C012C4F39BC6CC2FCA /* Pods-WNetwork_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CD08844A928E78519031B4E6075FA73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		717A634F9808839C269476D6F914A7DB /* ReplaceMe.m in Sources */ = {isa = PBXBuildFile; fileRef = 97D3644854173505E2BE0C9327542C24 /* ReplaceMe.m */; };
 		7E0BBD93C8B348DE938587B48BB2EBDE /* WNetwork-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E156EC5A909D9E25E19DD34ECEC2A /* WNetwork-dummy.m */; };
 		B718DCD1D3C14E8B28DB5641ED28FA6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		E81F64FC6E09627BE55F9BFC3361EA48 /* WNetwork-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E6347A71199067A41B7695670E688686 /* WNetwork-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,7 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1021FFCE3BD93796F1EBE9B6BA8EBC8B /* Pods_WNetwork_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_WNetwork_Tests.framework; path = "Pods-WNetwork_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1021FFCE3BD93796F1EBE9B6BA8EBC8B /* Pods_WNetwork_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WNetwork_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C8E38B620FCF880000BA30A /* WNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WNetwork.h; path = WNetwork/Classes/WNetwork.h; sourceTree = "<group>"; };
+		1C8E38B720FCF880000BA30A /* WNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WNetwork.m; path = WNetwork/Classes/WNetwork.m; sourceTree = "<group>"; };
+		1C8E38BC20FCF898000BA30A /* WJosnTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WJosnTool.h; path = WNetwork/Classes/WJosnTool.h; sourceTree = "<group>"; };
+		1C8E38BD20FCF898000BA30A /* WJosnTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WJosnTool.m; path = WNetwork/Classes/WJosnTool.m; sourceTree = "<group>"; };
 		24EB8FCB8F859352D64CEB1E4C1F712F /* Pods-WNetwork_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WNetwork_Tests-resources.sh"; sourceTree = "<group>"; };
 		28F6B1B9159AD28D83D3DD594BB3C50D /* WNetwork-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WNetwork-prefix.pch"; sourceTree = "<group>"; };
 		2AADD4CDC7A19532840F7C5F63FD7F17 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,18 +50,17 @@
 		8639E4ECF28EFB7F878FF7842BB9E5E3 /* Pods-WNetwork_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WNetwork_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		888E156EC5A909D9E25E19DD34ECEC2A /* WNetwork-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "WNetwork-dummy.m"; sourceTree = "<group>"; };
 		8B79A66E50D8134507A25B58451E8EE2 /* Pods-WNetwork_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WNetwork_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		97D3644854173505E2BE0C9327542C24 /* ReplaceMe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ReplaceMe.m; path = WNetwork/Classes/ReplaceMe.m; sourceTree = "<group>"; };
-		ABF1001AE89A68963511FBD69B48C674 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		AFA74E7455FD04BA40C3F658BA9F11EC /* WNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WNetwork.framework; path = WNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B097D0AD864A7188F0C097B9360D2EE4 /* WNetwork.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = WNetwork.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		ABF1001AE89A68963511FBD69B48C674 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		AFA74E7455FD04BA40C3F658BA9F11EC /* WNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B097D0AD864A7188F0C097B9360D2EE4 /* WNetwork.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = WNetwork.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DA488541D24E1DB5144E2152D8CCD44C /* Pods-WNetwork_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WNetwork_Tests-dummy.m"; sourceTree = "<group>"; };
 		E007CAFA978F676BEA4E22655A667740 /* Pods-WNetwork_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-WNetwork_Tests.modulemap"; sourceTree = "<group>"; };
 		E3EF6BE4E6E39950F5A2E8B478D15F2A /* WNetwork.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = WNetwork.modulemap; sourceTree = "<group>"; };
 		E51395204C1DDA67C9F31FC91E8691E2 /* Pods-WNetwork_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WNetwork_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		E6347A71199067A41B7695670E688686 /* WNetwork-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WNetwork-umbrella.h"; sourceTree = "<group>"; };
 		FA150ED46842D4E2F3634439C8961644 /* Pods-WNetwork_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WNetwork_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		FCFA91BEE10F1C8F256CED88B5935F9B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		FCFA91BEE10F1C8F256CED88B5935F9B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,9 +171,12 @@
 		F2A910FAAB373FD71DBCA2D95D920EF6 /* WNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				97D3644854173505E2BE0C9327542C24 /* ReplaceMe.m */,
 				713982DAB99C976713550F96C02C8501 /* Pod */,
 				6C7A1BCA46B00FDEA94F1D4266A0ABD1 /* Support Files */,
+				1C8E38B620FCF880000BA30A /* WNetwork.h */,
+				1C8E38B720FCF880000BA30A /* WNetwork.m */,
+				1C8E38BC20FCF898000BA30A /* WJosnTool.h */,
+				1C8E38BD20FCF898000BA30A /* WJosnTool.m */,
 			);
 			name = WNetwork;
 			path = ../..;
@@ -185,7 +198,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C8E38BE20FCF898000BA30A /* WJosnTool.h in Headers */,
 				35BB3C127DFEA561F17CB294DE6C915B /* Pods-WNetwork_Tests-umbrella.h in Headers */,
+				1C8E38B820FCF880000BA30A /* WNetwork.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +208,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C8E38BF20FCF898000BA30A /* WJosnTool.h in Headers */,
 				E81F64FC6E09627BE55F9BFC3361EA48 /* WNetwork-umbrella.h in Headers */,
+				1C8E38B920FCF880000BA30A /* WNetwork.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				717A634F9808839C269476D6F914A7DB /* ReplaceMe.m in Sources */,
+				1C8E38BB20FCF880000BA30A /* WNetwork.m in Sources */,
+				1C8E38C120FCF898000BA30A /* WJosnTool.m in Sources */,
 				7E0BBD93C8B348DE938587B48BB2EBDE /* WNetwork-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +294,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C8E38BA20FCF880000BA30A /* WNetwork.m in Sources */,
+				1C8E38C020FCF898000BA30A /* WJosnTool.m in Sources */,
 				F411C8D01C2265881FB857E6BC276951 /* Pods-WNetwork_Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
