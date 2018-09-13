@@ -1,16 +1,37 @@
 PODS:
-  - WNetwork (0.1.0)
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - WNetwork (0.1.1):
+    - AFNetworking
 
 DEPENDENCIES:
   - WNetwork (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
 
 EXTERNAL SOURCES:
   WNetwork:
     :path: "../"
 
 SPEC CHECKSUMS:
-  WNetwork: cccea1fd09c3fd6ac27229fb9a6daab2927196b2
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  WNetwork: fa6309d90db53eadef43dbdca9873961fc65e7cb
 
-PODFILE CHECKSUM: a885b784be80def28077ea159c0bced5cc2d6b5e
+PODFILE CHECKSUM: 80e47f699473ed01a82ac15890b8fd277539c1c5
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

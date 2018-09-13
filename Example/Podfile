@@ -1,6 +1,5 @@
 use_frameworks!
-target 'WNetwork_Tests' do
+
+target 'WNetwork_Example' do
   pod 'WNetwork', :path => '../'
-  
-  
 end

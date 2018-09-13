@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "WNetwork.h"
 
 FOUNDATION_EXPORT double WNetworkVersionNumber;
 FOUNDATION_EXPORT const unsigned char WNetworkVersionString[];
