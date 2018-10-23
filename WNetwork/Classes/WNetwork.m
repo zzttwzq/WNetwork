@@ -215,7 +215,7 @@ static AFHTTPSessionManager *manager = nil;
     manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 上传普通格式
 
         //3.超时时间
-    manager.requestSerializer.timeoutInterval = 30.0f;
+    manager.requestSerializer.timeoutInterval = 10.0f;
 
         //4.设置接收的Content-Type
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml",@"text/html", @"application/json",@"text/plain",nil];
