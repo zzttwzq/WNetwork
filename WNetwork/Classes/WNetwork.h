@@ -52,14 +52,14 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
  @param method 请求方法
  @param urlString 请求url
  @param params 参数
- @param setHttpHeader 设置请求头
+ @param headers 请求头字典
  @param successCallBack 成功回调返回结果
  @param errorCallBack 返回结果
  */
 + (void) taskWithMethod:(WNetWorkMethod)method
-              urlString:(NSString *)urlString
+              urlString:(NSString *_Nullable)urlString
                  params:(id)params
-          setHttpHeader:(NSMutableURLRequest_Block)setHttpHeader
+                headers:(NSDictionary *_Nullable)headers
         successCallBack:(Dict_Block)successCallBack
           errorCallBack:(Error_Block)errorCallBack;
 
@@ -69,13 +69,13 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
 
  @param urlString 请求url
  @param params 参数
- @param setHttpHeader 设置请求头
+ @param headers 请求头字典
  @param successCallBack 成功回调返回结果
  @param errorCallBack 返回结果
  */
-+ (void) getTaskWithUrl:(NSString *)urlString
++ (void) getTaskWithUrl:(NSString *_Nullable)urlString
                  params:(id)params
-          setHttpHeader:(NSMutableURLRequest_Block)setHttpHeader
+                headers:(NSDictionary *_Nullable)headers
         successCallBack:(Dict_Block)successCallBack
           errorCallBack:(Error_Block)errorCallBack;
 
@@ -85,25 +85,25 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
 
  @param urlString 请求url
  @param params 参数
- @param setHttpHeader 设置请求头
+ @param headers 请求头字典
  @param successCallBack 成功回调返回结果
  @param errorCallBack 返回结果
  */
-+ (void) postTaskWithUrl:(NSString *)urlString
++ (void) postTaskWithUrl:(NSString *_Nullable)urlString
                   params:(id)params
-           setHttpHeader:(NSMutableURLRequest_Block)setHttpHeader
+                 headers:(NSDictionary *_Nullable)headers
          successCallBack:(Dict_Block)successCallBack
            errorCallBack:(Error_Block)errorCallBack;
 
 
 #pragma mark - AFNetworking实现的方法
 /**
- 创建一个单利 (可以通过继承的方式处理其他请求方式)
+ 创建一个单利
 
- @param HeaderfieldBlock 添加http请求头
+ @param headers 请求头字典
  @return 返回单利
  */
-+(AFHTTPSessionManager *_Nullable)sharedManagerWithHeaderfieldBlock:(AFNetRequest_Block _Nullable )HeaderfieldBlock;
++ (AFHTTPSessionManager *_Nullable) sharedManagerWithHeaders:(NSDictionary *)headers;
 
 
 /**
@@ -111,14 +111,14 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
 
  @param urlString 请求地址
  @param postDic 发送的数据
- @param setHeaderfield 设置请求头
+ @param headers 请求头字典
  @param progress 下载进度
  @param successCallBack 成功回调
  @param errorCallBack 失败回调
  */
 +(void)getRequestWithURL:(NSString *_Nullable)urlString
                  postDic:(NSDictionary *_Nullable)postDic
-          setHeaderfield:(AFNetRequest_Block _Nullable )setHeaderfield
+                 headers:(NSDictionary *_Nullable)headers
                 progress:(progressBlock _Nullable)progress
          successCallBack:(Dict_Block)successCallBack
            errorCallBack:(Error_Block)errorCallBack;
@@ -130,14 +130,14 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
 
  @param urlString 请求地址
  @param postDic 发送的数据
- @param setHeaderfield 设置请求头
+ @param headers 请求头字典
  @param progress 下载进度
  @param successCallBack 成功回调
  @param errorCallBack 失败回调
  */
 +(void)postRequestWithURL:(NSString *_Nullable)urlString
                   postDic:(NSDictionary *_Nullable)postDic
-           setHeaderfield:(AFNetRequest_Block _Nullable )setHeaderfield
+                  headers:(NSDictionary *_Nullable)headers
                  progress:(progressBlock _Nullable)progress
           successCallBack:(Dict_Block)successCallBack
             errorCallBack:(Error_Block)errorCallBack;
@@ -167,6 +167,6 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
  @param string json字符串
  @return 转换成模型
  */
-+(NSDictionary * _Nullable)jsonStringToDic:(NSString * _Nullable)string;
++(NSDictionary * _Nullable)JSONStringToDic:(NSString * _Nullable)string;
 
 @end

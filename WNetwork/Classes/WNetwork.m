@@ -34,21 +34,21 @@ static dispatch_once_t networkOnce;
  @param method 请求方法
  @param urlString 请求url
  @param params 参数
- @param setHttpHeader 设置请求头
+ @param headers 请求头字典
  @param successCallBack 成功回调返回结果
  @param errorCallBack 返回结果
  */
 + (void) taskWithMethod:(WNetWorkMethod)method
-              urlString:(NSString *)urlString
+              urlString:(NSString *_Nullable)urlString
                  params:(id)params
-          setHttpHeader:(NSMutableURLRequest_Block)setHttpHeader
+                headers:(NSDictionary *_Nullable)headers
         successCallBack:(Dict_Block)successCallBack
           errorCallBack:(Error_Block)errorCallBack;
 {
-        //1.url地址编码
+    //1.url地址编码
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"`#%^{}\"[]|\\<> "].invertedSet];
 
-        //2.调用代理，如果发现返回no 就停止继续请求
+    //2.调用代理，如果发现返回no 就停止继续请求
     if ([WNetwork shareInstence].willStartRequest) {
         BOOL flag = [WNetwork shareInstence].willStartRequest(urlString,params);
         if (!flag) {
@@ -56,11 +56,11 @@ static dispatch_once_t networkOnce;
         }
     }
 
-        //3.使用设置来创建一个sessons
+    //3.使用设置来创建一个sessons
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 
 
-        //4.创建request
+    //4.创建request
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     if (method == WNetWorkMethod_GET) {
 
@@ -80,7 +80,7 @@ static dispatch_once_t networkOnce;
 
         request.HTTPMethod = @"POST";
 
-            //设置post数据
+        //设置post数据
         if ([params isKindOfClass:[NSString class]]) {
 
             request.HTTPBody = [params dataUsingEncoding:NSUTF8StringEncoding];
@@ -105,14 +105,14 @@ static dispatch_once_t networkOnce;
     }
 
 
-        //5.设置类型
-    if (setHttpHeader) {
-        setHttpHeader(request);
-    }
+    //5.设置类型
+    [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+    }];
     [request setValue:@"application/json;text/html;" forHTTPHeaderField:@"Content-Type"];
 
 
-        //6.由于要先对request先行处理,我们通过request初始化task
+    //6.由于要先对request先行处理,我们通过request初始化task
     NSURLSessionTask *task = [session dataTaskWithRequest:request
                                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
@@ -146,7 +146,7 @@ static dispatch_once_t networkOnce;
                                         }];
 
 
-        //7.启动任务
+    //7.启动任务
     [task resume];
 }
 
@@ -156,17 +156,17 @@ static dispatch_once_t networkOnce;
 
  @param urlString 请求url
  @param params 参数
- @param setHttpHeader 设置请求头
+ @param headers 请求头字典
  @param successCallBack 成功回调返回结果
  @param errorCallBack 返回结果
  */
-+ (void) getTaskWithUrl:(NSString *)urlString
++ (void) getTaskWithUrl:(NSString *_Nullable)urlString
                  params:(id)params
-          setHttpHeader:(NSMutableURLRequest_Block)setHttpHeader
+                headers:(NSDictionary *_Nullable)headers
         successCallBack:(Dict_Block)successCallBack
           errorCallBack:(Error_Block)errorCallBack;
 {
-    [self taskWithMethod:WNetWorkMethod_GET urlString:urlString params:params setHttpHeader:setHttpHeader successCallBack:successCallBack errorCallBack:errorCallBack];
+    [self taskWithMethod:WNetWorkMethod_GET urlString:urlString params:params headers:headers successCallBack:successCallBack errorCallBack:errorCallBack];
 }
 
 
@@ -175,17 +175,17 @@ static dispatch_once_t networkOnce;
 
  @param urlString 请求url
  @param params 参数
- @param setHttpHeader 设置请求头
+ @param headers 请求头字典
  @param successCallBack 成功回调返回结果
  @param errorCallBack 返回结果
  */
-+ (void) postTaskWithUrl:(NSString *)urlString
++ (void) postTaskWithUrl:(NSString *_Nullable)urlString
                   params:(id)params
-           setHttpHeader:(NSMutableURLRequest_Block)setHttpHeader
+                 headers:(NSDictionary *_Nullable)headers
          successCallBack:(Dict_Block)successCallBack
            errorCallBack:(Error_Block)errorCallBack;
 {
-    [self taskWithMethod:WNetWorkMethod_POST urlString:urlString params:params setHttpHeader:setHttpHeader successCallBack:successCallBack errorCallBack:errorCallBack];
+    [self taskWithMethod:WNetWorkMethod_POST urlString:urlString params:params headers:headers successCallBack:successCallBack errorCallBack:errorCallBack];
 }
 
 
@@ -195,47 +195,25 @@ static AFHTTPSessionManager *manager = nil;
 /**
  创建一个单利
 
- @param HeaderfieldBlock 添加http请求头
+ @param headers 请求头字典
  @return 返回单利
  */
-+(AFHTTPSessionManager *_Nullable)sharedManagerWithHeaderfieldBlock:(AFNetRequest_Block _Nullable )HeaderfieldBlock;
++ (AFHTTPSessionManager *_Nullable) sharedManagerWithHeaders:(NSDictionary *)headers;
 {
     manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 上传普通格式
+    manager.requestSerializer.timeoutInterval = 10.0f; // 超时时间
 
-        //1.设置请求类型
+    //1.设置请求类型
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/xml",@"text/plain", nil];
 
-        //2.最大请求并发任务数
+    //2.最大请求并发任务数
     manager.operationQueue.maxConcurrentOperationCount = 10;
 
-        // 请求格式
-        // AFHTTPRequestSerializer            二进制格式
-        // AFJSONRequestSerializer            JSON
-        // AFPropertyListRequestSerializer    PList(是一种特殊的XML,解析起来相对容易)
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer]; // 上传普通格式
-
-        //3.超时时间
-    manager.requestSerializer.timeoutInterval = 10.0f;
-
-        //4.设置接收的Content-Type
-    manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects:@"application/xml", @"text/xml",@"text/html", @"application/json",@"text/plain",nil];
-
-        // 返回格式
-        // AFHTTPResponseSerializer           二进制格式
-        // AFJSONResponseSerializer           JSON
-        // AFXMLParserResponseSerializer      XML,只能返回XMLParser,还需要自己通过代理方法解析
-        // AFXMLDocumentResponseSerializer (Mac OS X)
-        // AFPropertyListResponseSerializer   PList
-        // AFImageResponseSerializer          Image
-        // AFCompoundResponseSerializer       组合
-
-        //5.设置返回Content-type 返回格式 JSON
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-        //6.设置请求头
-    if (HeaderfieldBlock) {
-        HeaderfieldBlock(manager.requestSerializer);
-    }
+    //3.设置请求头
+    [headers enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+    }];
     [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
 
     return manager;
@@ -247,19 +225,22 @@ static AFHTTPSessionManager *manager = nil;
 
  @param urlString 请求地址
  @param postDic 发送的数据
- @param setHeaderfield 设置请求头
+ @param headers 请求头字典
  @param progress 下载进度
  @param successCallBack 成功回调
  @param errorCallBack 失败回调
  */
 +(void)getRequestWithURL:(NSString *_Nullable)urlString
                  postDic:(NSDictionary *_Nullable)postDic
-          setHeaderfield:(AFNetRequest_Block _Nullable )setHeaderfield
+                 headers:(NSDictionary *_Nullable)headers
                 progress:(progressBlock _Nullable)progress
          successCallBack:(Dict_Block)successCallBack
            errorCallBack:(Error_Block)errorCallBack;
 {
-    [[WNetwork sharedManagerWithHeaderfieldBlock:setHeaderfield] GET:urlString parameters:postDic progress:^(NSProgress * _Nonnull downloadProgress) {
+    [[WNetwork sharedManagerWithHeaders:headers]
+     GET:urlString
+     parameters:postDic
+     progress:^(NSProgress * _Nonnull downloadProgress) {
 
         if (progress) {
             progress(downloadProgress);
@@ -279,7 +260,6 @@ static AFHTTPSessionManager *manager = nil;
 
         [self handleError:error callBack:errorCallBack];
     }];
-
 }
 
 
@@ -288,19 +268,22 @@ static AFHTTPSessionManager *manager = nil;
 
  @param urlString 请求地址
  @param postDic 发送的数据
- @param setHeaderfield 设置请求头
+ @param headers 请求头字典
  @param progress 下载进度
  @param successCallBack 成功回调
  @param errorCallBack 失败回调
  */
 +(void)postRequestWithURL:(NSString *_Nullable)urlString
                   postDic:(NSDictionary *_Nullable)postDic
-           setHeaderfield:(AFNetRequest_Block _Nullable )setHeaderfield
+                  headers:(NSDictionary *_Nullable)headers
                  progress:(progressBlock _Nullable)progress
           successCallBack:(Dict_Block)successCallBack
             errorCallBack:(Error_Block)errorCallBack;
 {
-    [[WNetwork sharedManagerWithHeaderfieldBlock:setHeaderfield] POST:[urlString mutableCopy] parameters:[postDic mutableCopy] progress:^(NSProgress * _Nonnull uploadProgress) {
+    [[WNetwork sharedManagerWithHeaders:headers]
+     POST:[urlString mutableCopy]
+     parameters:[postDic mutableCopy]
+     progress:^(NSProgress * _Nonnull uploadProgress) {
 
         if (progress) {
             progress(uploadProgress);
@@ -320,7 +303,6 @@ static AFHTTPSessionManager *manager = nil;
 
         [self handleError:error callBack:errorCallBack];
     }];
-
 }
 
 
@@ -332,7 +314,7 @@ static AFHTTPSessionManager *manager = nil;
  */
 + (NSString * _Nullable)getTimeStamp;
 {
-        //获取系统的时间日期
+    //获取系统的时间日期
     NSDate *senddate = [NSDate date];
     return [NSString stringWithFormat:@"%f",[senddate timeIntervalSince1970]];
 }
