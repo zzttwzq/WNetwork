@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'WNetwork'
-    s.version          = '0.1.5'
+    s.version          = '0.1.6'
     s.summary          = '网络库，封装了afn，request'
 
     # This description is used to generate tags and improve search results.
