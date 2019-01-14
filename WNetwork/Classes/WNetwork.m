@@ -339,6 +339,29 @@ static AFHTTPSessionManager *manager = nil;
 
 
 /**
+ data 转 json 字典
+
+ @param data 要转换的字典
+ @return 转换成json的字符串
+ */
++ (NSDictionary * _Nullable) DictWithData:(NSData * _Nullable)data;
+{
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+
+    if(err){
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+
+    return dic;
+}
+
+
+
+/**
  json字符串转字典
 
  @param string json字符串

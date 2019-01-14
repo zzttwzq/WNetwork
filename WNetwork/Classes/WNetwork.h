@@ -162,6 +162,15 @@ typedef BOOL(^String_Dict_Block)(NSString *url,NSDictionary *params);
 
 
 /**
+ data 转 json 字典
+
+ @param data 要转换的字典
+ @return 转换成json的字符串
+ */
++ (NSDictionary * _Nullable) DictWithData:(NSData * _Nullable)data;
+
+
+/**
  json字符串转字典
 
  @param string json字符串
