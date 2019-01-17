@@ -367,7 +367,7 @@ static AFHTTPSessionManager *manager = nil;
  @param string json字符串
  @return 转换成模型
  */
-+(NSDictionary * _Nullable)jsonStringToDic:(NSString * _Nullable)string;
++(NSDictionary * _Nullable)JSONStringToDic:(NSString * _Nullable)string;
 {
     if (string == nil ||
         ![string isKindOfClass:[NSString class]]) {
